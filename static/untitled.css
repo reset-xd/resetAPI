@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "whitney";
+  src: url('./whitneymedium.otf');
+}
+
+*{
+  font-family: "whitney";
+}

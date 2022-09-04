@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>resetapi3</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round&amp;display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+
+<body style="background: #f7dada;font-family: 'Varela Round', sans-serif;">
+    <nav class="navbar navbar-light navbar-expand-md" style="background: #f25188;margin: 41px;border-radius: 5px;color: #f9f3f3;">
+        <div class="container-fluid"><a class="navbar-brand" href="/" style="color: #f9f3f3;">resapi</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item" style="color: #f9f3f3;"><a class="nav-link active" href="/redoc" style="color: #f9f3f3;">documentation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://discord.gg/HMF77Xf88J" style="color: #f9f3f3;">discord-server</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.buymeacoffee.com/resetxd" style="color: #f9f3f3;">support</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://discord.com/api/oauth2/authorize?client_id=849197452082937866&redirect_uri=https%3A%2F%2Fapi.resetxd.xyz%2Fauth&response_type=code&scope=identify" style="color: #f9f3f3;">authentication</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div style="text-align: center;"><img id="eyetracker" src="/asset/mainmain.gif" style="width: 300px;border-radius: 200px;border: 4.4px solid rgb(242,81,136) ;"></div>
+        <div style="margin-top: 20px;">
+            <h1 style="text-align: center;color: rgb(242,81,136);">RESAPI 3.0</h1>
+            <p style="text-align: center;color: rgb(242,81,136);font-size: 25px;">An API for your cool discord bot!</p>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 100px;">
+        <h1 style="color: rgb(242,81,136);font-weight: bold;">SUPPORTERS</h1>
+        <p style="color: rgb(242,81,136);">supporters help with the API cost issues, very cool people</p>
+        <div class="row d-xxl-flex justify-content-center justify-content-xxl-center" style="text-align: center;">
+            <div class="col-md-12" style="width: fit-content;height: fit-content;padding: 0px 0px;">
+                <div class="card" style="width: 250px;border-radius: 5px;background: rgb(242,81,136);margin: 15px;"><img class="card-img-top w-100 d-block" src="{{ url_for('static', path='/parajezz.png') }}" style="width: 250px !important;height: 250px !important;">
+                    <div class="card-body" style="text-align: center;">
+                        <h4 class="card-title" style="color: white;"><strong>ParaJezz#1211</strong><br></h4>
+                        <p class="card-text" style="color: white;">$10</p><a class="card-link" href="https://anilist.co/user/ParaJezz/" style="color: white;">AniList</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="width: fit-content;height: fit-content;padding: 0px 0px;">
+                <div class="card" style="width: 250px;border-radius: 5px;background: rgb(242,81,136);margin: 15px;"><img class="card-img-top w-100 d-block" src="{{ url_for('static', path='/avatar1.png') }}" style="width: 250px !important;height: 250px !important;">
+                    <div class="card-body" style="text-align: center;">
+                        <h4 class="card-title" style="color: white;"><strong>resetxd#8278</strong><br></h4>
+                        <p class="card-text" style="color: white;">$10</p><a class="card-link" href="https://discord.gg/HMF77Xf88J" style="color: white;">discord server</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 100px;">
+        <h1 style="color: rgb(242,81,136);font-weight: bold;">ENDPOINTS</h1>
+        <div class="row d-xxl-flex justify-content-center justify-content-xxl-center" style="text-align: center;">
+            {{endpoints| safe}}
+        </div>
+    </div>
+    <footer style="margin-top: 42px;">
+        <hr style="color: rgb(242,81,136);opacity: 1;height: 5px;">
+        <div style="text-align: center;">
+            <p style="color: rgb(242,81,136);font-weight: bold;">©2022 reset<br></p>
+        </div>
+    </footer>
+
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="resetxd" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script><script src="{{ url_for('static', path='/index.js') }}"></script>
+</body>
+
+</html>

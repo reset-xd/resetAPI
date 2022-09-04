@@ -2,7 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+.env
+.vscode
+__pycache__
+testing
 # C extensions
 *.so
 
