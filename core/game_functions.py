@@ -1,5 +1,86 @@
 import numpy as np
 from typing import Optional
+from tetris import BaseGame, Move, MoveKind, MoveDelta, PieceType
+from tetris.engine import Gravity
+import tetris
+
+
+# region [game endpoint][tetris][functions]
+
+tiles = {
+    tetris.MinoType.I:"🟦",
+    tetris.MinoType.J:"🟫",
+    tetris.MinoType.L:"🟧",
+    tetris.MinoType.O:"🟨",
+    tetris.MinoType.S:"🟩",
+    tetris.MinoType.T:"🟪",
+    tetris.MinoType.Z:"🟥",
+    tetris.MinoType.EMPTY:"⬜",
+    tetris.MinoType.GHOST:"⬛"
+}
+
+def tetris_render_board(game):
+    return game.render(tiles=tiles)
+
+def tetris_next_piece(game):
+    try:
+        nex = game.queue[0]
+        if nex == PieceType.I:
+            return "I"
+        elif nex == PieceType.J:
+            return "J"
+        elif nex == PieceType.L:
+            return "L"
+        elif nex == PieceType.O:
+            return "O"
+        elif nex == PieceType.S:
+            return "S"
+        elif nex == PieceType.T:
+            return "T"
+        elif nex == PieceType.Z:
+            return "Z"
+        else:
+            return "none"
+    except:
+        return "none"
+
+class PerMoveGravity(Gravity):
+    TILES_PER_MOVE = 1
+    MAX_MOVES_AFTER_TOUCH = 5
+
+    def __init__(self, game: BaseGame):
+        super().__init__(game)
+        self.touched = False
+        self.before_lock = 0
+
+    def calculate(self, delta: Optional[MoveDelta] = None) -> None:
+        if delta is not None:
+            # We were called inside `push()`
+            if delta.auto:
+                return
+
+            if delta.kind == MoveKind.hard_drop or delta.kind == MoveKind.swap:
+                self.touched = False
+
+            piece = self.game.piece
+            if self.touched:
+                self.before_lock -= 1
+
+            elif self.game.rs.overlaps(minos=piece.minos, px=piece.x + 1, py=piece.y):
+                # The piece is resting on a tile
+                self.touched = True
+                self.before_lock = self.MAX_MOVES_AFTER_TOUCH
+
+            if self.touched and self.before_lock == 0:
+                self.game.push(Move(kind=MoveKind.hard_drop, auto=True))
+                self.touched = False
+
+            self.game.push(Move(kind=MoveKind.soft_drop, x=self.TILES_PER_MOVE, auto=True))
+
+# endregion
+
+
+
 #from akinator.async_aki import Akinator
 import akinator
 

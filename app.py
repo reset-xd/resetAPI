@@ -6,6 +6,9 @@ import json as jsonlib
 import random
 import akinator
 import aiohttp
+from tetris.impl import custom
+from tetris.impl import scorer
+import tetris
 from core.base_models import *
 from core.game_functions import *
 from core.image_gen import *
@@ -199,6 +202,96 @@ def homepage(request: fastapi.Request):
 
 
 # endregion
+
+
+# region [game endpoints][tetris]
+
+
+tetris_current_playing = {}
+
+@app.post("/game/tetris/create",tags=["games endpoints"],summary="create tetris game")
+async def tetris_create_game(request: fastapi.Request):
+    """
+    [POST] method
+
+    create a new tetris game
+
+    endpoint - /game/tetris/create
+
+    # returns
+    ```json
+    {
+        "game_id": game-token,
+        board: "ready to use board",
+        "next": "next piece"
+    }
+    ```
+    """
+    game_id = str(uuid.uuid4())
+    global tetris_current_playing
+    game = tetris.BaseGame(custom.CustomEngine,board_size=(15,10), scorer=scorer.GuidelineScorer)
+    game.engine.parts["gravity"] = PerMoveGravity
+    game.reset()
+    tetris_current_playing[str(game_id)] = {"game":game}
+    return {"game_id":str(game_id), "board":tetris_render_board(game), "next": tetris_next_piece(game)}
+
+@app.post("/game/tetris/action",tags=["games endpoints"],summary="tetris game actions")
+async def tetris_action(request: fastapi.Request, action:tetris_action):
+    """
+    [POST] method
+
+    perform an action on a tetris game
+
+    endpoint - /game/tetris/action
+
+    # parameters
+    - **game_id** - game token
+    - **action** - action to perform (left, right, rotate, soft_drop, hard_drop, swap, hold)
+
+    # returns
+    ```json
+    {
+        "win": true or false if the game still playing,
+        "board":"updated board",
+        "next":"next piece"
+    }
+    ```
+    """
+    global tetris_current_playing
+    if action.action == "left":
+        tetris_current_playing[action.game_id]["game"].left()
+        tetris_current_playing[action.game_id]["game"].tick()
+        return {"win":str(tetris_current_playing[action.game_id]["game"].playing) ,"board":tetris_render_board(tetris_current_playing[action.game_id]["game"]),"score":tetris_current_playing[action.game_id]["game"].score, "next": tetris_next_piece(tetris_current_playing[action.game_id]["game"])}
+    elif action.action == "right":
+        tetris_current_playing[action.game_id]["game"].right()
+        tetris_current_playing[action.game_id]["game"].tick()
+        return {"win":str(tetris_current_playing[action.game_id]["game"].playing),"board":tetris_render_board(tetris_current_playing[action.game_id]["game"]),"score":tetris_current_playing[action.game_id]["game"].score, "next": tetris_next_piece(tetris_current_playing[action.game_id]["game"])}
+    elif action.action == "rotate":
+        tetris_current_playing[action.game_id]["game"].rotate()
+        tetris_current_playing[action.game_id]["game"].tick()
+        return {"win":str(tetris_current_playing[action.game_id]["game"].playing),"board":tetris_render_board(tetris_current_playing[action.game_id]["game"]),"score":tetris_current_playing[action.game_id]["game"].score, "next": tetris_next_piece(tetris_current_playing[action.game_id]["game"])}
+    elif action.action == "soft_drop":
+        tetris_current_playing[action.game_id]["game"].soft_drop()
+        tetris_current_playing[action.game_id]["game"].tick()
+        return {"win":str(tetris_current_playing[action.game_id]["game"].playing),"board":tetris_render_board(tetris_current_playing[action.game_id]["game"]),"score":tetris_current_playing[action.game_id]["game"].score, "next": tetris_next_piece(tetris_current_playing[action.game_id]["game"])}
+    elif action.action == "hard_drop":
+        tetris_current_playing[action.game_id]["game"].hard_drop()
+        tetris_current_playing[action.game_id]["game"].tick()
+        return {"win":str(tetris_current_playing[action.game_id]["game"].playing),"board":tetris_render_board(tetris_current_playing[action.game_id]["game"]),"score":tetris_current_playing[action.game_id]["game"].score, "next": tetris_next_piece(tetris_current_playing[action.game_id]["game"])}
+    elif action.action == "swap":
+        tetris_current_playing[action.game_id]["game"].swap()
+        tetris_current_playing[action.game_id]["game"].tick()
+        return {"win":str(tetris_current_playing[action.game_id]["game"].playing),"board":tetris_render_board(tetris_current_playing[action.game_id]["game"]),"score":tetris_current_playing[action.game_id]["game"].score, "next": tetris_next_piece(tetris_current_playing[action.game_id]["game"])}
+    elif action.action == "hold":
+        tetris_current_playing[action.game_id]["game"].swap()
+        tetris_current_playing[action.game_id]["game"].tick()
+        return {"win":str(tetris_current_playing[action.game_id]["game"].playing),"board":tetris_render_board(tetris_current_playing[action.game_id]["game"]),"score":tetris_current_playing[action.game_id]["game"].score, "next": tetris_next_piece(tetris_current_playing[action.game_id]["game"])}
+
+# endregion
+
+# endregion
+
+    
 
 # region [internal endpoints]
 
