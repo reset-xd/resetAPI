@@ -34,6 +34,16 @@
         <p style="color: rgb(242,81,136);">supporters help with the API cost issues, very cool people</p>
         <div class="row d-xxl-flex justify-content-center justify-content-xxl-center" style="text-align: center;">
             <div class="col-md-12" style="width: fit-content;height: fit-content;padding: 0px 0px;">
+                <div class = "bg" style="padding:1px; border-radius: 10px;">
+                    <div class="card" style="width: 250px;border-radius: 5px;background: rgb(242,81,136);margin: 10px; "><img class="card-img-top w-100 d-block" src="{{ url_for('static', path='/rajat.png') }}" style="width: 250px !important;height: 250px !important;">
+                        <div class="card-body" style="text-align: center;">
+                            <h4 class="card-title fgfg" style="color: white;"><strong>Rajat#1004</strong><br></h4>
+                            <p class="card-text" style="color: white;">nitro <img src="{{ url_for('static', path='/jedi.gif') }}" height="20px"></p><a class="card-link" href="zhttps://jharajat.com.np/" style="color: white;">Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="width: fit-content;height: fit-content;padding: 0px 0px;">
                 <div class="card" style="width: 250px;border-radius: 5px;background: rgb(242,81,136);margin: 15px;"><img class="card-img-top w-100 d-block" src="{{ url_for('static', path='/parajezz.png') }}" style="width: 250px !important;height: 250px !important;">
                     <div class="card-body" style="text-align: center;">
                         <h4 class="card-title" style="color: white;"><strong>ParaJezz#1211</strong><br></h4>
@@ -63,7 +73,50 @@
             <p style="color: rgb(242,81,136);font-weight: bold;">©2022 reset<br></p>
         </div>
     </footer>
+    <script>
+var bgPage = document.getElementsByClassName('bg')[0];
+var fontPage = document.getElementsByClassName('fgfg')[0];
 
+var r = 0,
+g = 0,
+b = 0;
+
+function bg () {
+  
+	if (r <= 255 && g == 0 && b == 0) {
+		r += 5;
+	}
+
+	if (r == 255 && b == 0 && g <= 255) {
+		g +=5;
+	}
+
+	if (r == 255 && g == 255 && b <= 255) {
+		b +=5;
+	}
+
+	if (b == 255 && g == 255 && r > 0) {
+		r -=5;
+	}
+
+	if (r == 0 && b == 255 && g > 0) {
+		g -=5;
+	}
+
+	if (r == 0 && g == 0 && b > 0) {
+		b -=5;
+	}
+
+	setTimeout(function() {
+		bg();
+	}, 1);
+
+	bgPage.style.background = 'rgb('+r+','+g+','+b+')';
+	fontPage.style.color = 'rgb('+r+','+g+','+b+')';
+}   
+bg();
+
+    </script>
     <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="resetxd" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script><script src="{{ url_for('static', path='/index.js') }}"></script>
