@@ -36,3 +36,11 @@ PS : in `app.py` there is a line with a token variable where you can give your d
 3. Your API is now deployed and will work 24/7 (almost, if replit is doesnt get crazy as it always does). If the API somehow dies, you can open up the Replit and run it again.
 
 These steps are not requires if you have a hacker Plan in replit and if you are generous enough, you can host the API and share the url with us, the other BDFD users to get benefits from.
+
+# credits
+
+credits to `Rajat`(Rajat#1004, https://jharajat.com.np/) for writing this wonderful readme.md!
+
+credits to `resetxd#8278` for making this API!
+
+credits to the `people` who uses the APIs!
