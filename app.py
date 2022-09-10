@@ -4,7 +4,7 @@ token = "discord bot token"
 import anyio
 import json as jsonlib
 import random
-import akinator
+from akinator import Akinator
 import aiohttp
 from tetris.impl import custom
 from tetris.impl import scorer
