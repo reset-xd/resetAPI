@@ -4,6 +4,30 @@ from PIL import Image,ImageChops,ImageDraw,ImageFont,ImageFilter
 from random import randint
 import io
 
+def fight(avatar):
+    r = requests.get(avatar)
+    background = Image.open("./assets/fight.jpeg")
+    avatar = Image.open(io.BytesIO(r.content)).resize((197,197))
+    overlay2 = Image.open("./assets/overlay2.png").resize((197,197))
+    nw = Image.new("RGBA", (197,197))
+    nw.paste(avatar, (0,0), overlay2.convert("L"))
+    nw = nw.rotate(7, expand=True)
+    background.paste(nw, (570,34), nw)
+    overlay3 = Image.open("./assets/overlay3.png").resize((284,284))
+    nw = Image.new("RGBA", (284,284))
+    nw.paste(avatar.resize((284,284)), (0,0), overlay3.convert("L"))
+    nw = nw.rotate(10, expand=True)
+    background.paste(nw, (-1,347), nw)
+    overlay4 = Image.open("./assets/overlay4.png").resize((294,294))
+    nw = Image.new("RGBA", (294,294))
+    nw.paste(avatar.resize((294,294)), (0,0), overlay4.convert("L"))
+    nw = nw.rotate(10, expand=True)
+    background.paste(nw, (394,271), nw)
+    a = randint(0,50)
+    background.save(f"./trash/{a}.png", "PNG")
+    return a
+
+
 def prem_overlay(js):
     r = requests.get(js["avatar"])
     avatar = Image.open(io.BytesIO(r.content)).resize((500, 500))

@@ -1,4 +1,9 @@
-token = "discord bot token"
+"""
+If you plan on using the /users endpoint then you need to have "discord_token"
+as environment variable.
+"""
+from os import getenv
+token = getenv("discord_token")
 
 # region [imports]
 import anyio
@@ -1267,6 +1272,30 @@ async def premium_overlays_card(request: fastapi.Request, ov: OverlayCards):
         jsonlib.dump(data, file, indent=4)
 
     return {"image": f"https://api.resetxd.xyz/overlay-card?id={tok}"}
+
+
+@app.get("/fight",
+         response_class=FileResponse,
+         tags=["image endpoints"],
+         summary="fight")
+@limiter.limit("100/minute")
+async def rip_endpoint(request: fastapi.Request, avatar):
+    """
+    We will fight under this Banner!!<br>/fight?avatar=https://cdn.discordapp.com/attachments/907213435358547968/974990788972916766/unknown.png<br>
+
+    endpoint - /fight
+
+    # parameters
+    - **avatar** - avatar image url
+
+    # returns
+    <img src="/asset/fight.png">
+    <img src="/asset/fight1.png">
+    """
+
+    a = await anyio.to_thread.run_sync(fight, avatar)
+    return FileResponse(f"./trash/{a}.png")
+
 
 
 # endregion
