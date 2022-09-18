@@ -172,7 +172,7 @@ async def premium_user_checker(token, userid):
     return False
     
 async def user_info(token, user_id):
-    header= {"Authorization":token}
+    header= {"Authorization": "Bot " + token}
     async with aiohttp.ClientSession(headers=header) as client: 
         response = await client.get(f"https://discord.com/api/v10/users/{user_id}",headers=header)
         response =  await response.json()
@@ -182,7 +182,10 @@ async def user_info(token, user_id):
         banner = f"https://cdn.discordapp.com/banners/{response['id']}/{response['banner']}.png?size=480"
     else:
         banner  = None
-    avatar = "https://cdn.discordapp.com/avatars/{0}/{1}.png?size=1024".format(user_id,response["avatar"])
+    if response["avatar"].startswith("a_"):
+        avatar = f"https://cdn.discordapp.com/avatars/{response['id']}/{response['avatar']}.gif?size=480"
+    else:
+        avatar = "https://cdn.discordapp.com/avatars/{0}/{1}.png?size=1024".format(user_id,response["avatar"])
     a = {"name":response["username"], "avatar": avatar, "banner": banner, "discriminator": response["discriminator"], "id": response["id"], "banner_color": response["banner_color"], "accent-color": response["accent_color"]}
     return a
 

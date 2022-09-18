@@ -1,7 +1,11 @@
 """
-If you plan on using the /users endpoint then you need to have "discord_token"
+If you plan on using the /user endpoint then you need to have "discord_token"
 as environment variable.
 """
+from dotenv import load_dotenv
+
+load_dotenv(".env")
+
 from os import getenv
 token = getenv("discord_token")
 
@@ -473,6 +477,22 @@ async def user(request: fastapi.Request, userid: str):
     """
     ret = await user_info(token, userid)
     return ret
+
+
+@app.get("/avatar/{user_id}.png", tags=["image endpoints"], summary="user avatar", response_class=RedirectResponse)
+@limiter.limit("100/minute")
+async def user(request: fastapi.Request, user_id: str):
+    """
+    user avatar url<br>/avatar/424133185123647488.png<br>
+
+
+    # return
+
+    Image
+
+    """
+    ret = await user_info(token, user_id)
+    return RedirectResponse(ret["avatar"])
 
 
 @app.get("/strings", tags=["json endpoints"], summary="encoding info")
