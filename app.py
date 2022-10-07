@@ -11,6 +11,7 @@ token = getenv("discord_token")
 
 # region [imports]
 import anyio
+import datetime
 import json as jsonlib
 import random
 from akinator import Akinator
@@ -298,9 +299,54 @@ async def tetris_action(request: fastapi.Request, action:tetris_action):
 
 # endregion
 
-# endregion
+# region [UnixTime]
 
-    
+@app.get("/unixtime/fromunix",tags=["unixtime"],summary="unixtime")
+async def unixtime(timestamp):
+    """
+    convert epos to simple string<br>/unixtime/fromunix?timestamp=1549892280<br>
+    get unixtime
+
+    endpoint - /unixtime/fromunix
+
+    # parameters
+    - **timestamp**: timestamp (1549892280)
+
+    # returns
+    ```json
+    {
+        "Datetime": "2019-02-11 13:38:00"
+    }
+    ```
+    """
+    return {"Datetime": datetime.datetime.fromtimestamp(int(timestamp)).strftime('%Y-%m-%d %H:%M:%S')}
+
+@app.get("/unixtime/tounix",tags=["unixtime"],summary="unixtime")
+async def unixtime(date):
+    """
+    convert epos to simple string<br>/unixtime/tounix?date=2019%2F02%2F11+13%3A38%3A00<br>
+    get unixtime
+
+    endpoint - /unixtime/tounix
+
+    # parameters
+    - **date**: date (2019/02/11 13:38:01)(2019-02-11 13:38:01)
+
+    # returns
+    ```json
+    {
+        "UnixTimeStamp": "1549892280"
+    }
+    ```
+    """
+    if date == "now":
+        return {"UnixTimeStamp": int(datetime.datetime.now().timestamp())}
+    date = date.replace("-","/")
+    data = {"Datetime": str(int(datetime.datetime.strptime(date, '%Y/%m/%d %H:%M:%S').timestamp()))}
+    return data
+
+
+# endregion 
 
 # region [internal endpoints]
 
