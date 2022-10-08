@@ -2,10 +2,6 @@
 If you plan on using the /user endpoint then you need to have "discord_token"
 as environment variable.
 """
-from dotenv import load_dotenv
-
-load_dotenv(".env")
-
 from os import getenv
 token = getenv("discord_token")
 

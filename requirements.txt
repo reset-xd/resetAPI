@@ -1,1 +1,11 @@
 akinator.py[fast_async]
+fastapi
+slowapi
+jinja2
+Pillow
+uvicorn
+anyio
+aiohttp
+xmltodict
+aioify
+motor
