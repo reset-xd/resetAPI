@@ -6,7 +6,7 @@ curently hosted on replit
 # how to use
 
 Want to have your Own API for your BDFD Bots? [1/2]
-Instead of using the APIs of some other peoples, host your own, with benefit of being able to modify them to your own needs if you know some stuffs of programming and know what you are doing.
+Instead of using 3rd party APIs, host your own and Modify your very own API!
 # Previews 
 
 ## json and games
@@ -16,8 +16,8 @@ Instead of using the APIs of some other peoples, host your own, with benefit of 
 
 <img src ="https://cdn.discordapp.com/attachments/780036165578784808/1014482640365174824/unknown.png">
 
-We know how many of you used reset's APIs to make stuffs in your bot, and we understand the frustration which we all went through since the API started getting down more often than usual. So Reset decided to release the entire API to the public. All the endpoints work except few which required him private API keys.
-The API is open-sourced and therefore free for everyone, reset will be adding more endpoints with time (you will have to fork the new ones with every updates) which you can get notified of from his support server.
+We know how many of you used reset's APIs to make stuffs in your bot, and we understand the frustration which we all went through since the API started getting down more often than usual. So krish decided to release the entire API to the public. All the endpoints work except few which required private API keys.
+The API is open-sourced and therefore free for everyone, krish will be adding more endpoints with time (you will have to fork the new ones with every updates) which you can get notified of from his support discord server.
 
 # Hosting API
 
@@ -35,7 +35,7 @@ PS : in `app.py` there is a line with a token variable where you can give your d
 
 3. Your API is now deployed and will work 24/7 (almost, if replit is doesnt get crazy as it always does). If the API somehow dies, you can open up the Replit and run it again.
 
-These steps are not requires if you have a hacker Plan in replit and if you are generous enough, you can host the API and share the url with us, the other BDFD users to get benefits from.
+These steps are not requires if you have a hacker Plan in replit.
 
 # credits
 
