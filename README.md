@@ -17,7 +17,7 @@ Instead of using the APIs of some other peoples, host your own, with benefit of 
 <img src ="https://cdn.discordapp.com/attachments/780036165578784808/1014482640365174824/unknown.png">
 
 We know how many of you used reset's APIs to make stuffs in your bot, and we understand the frustration which we all went through since the API started getting down more often than usual. So Reset decided to release the entire API to the public. All the endpoints work except few which required him private API keys.
-The API is open-sourced and therefore free for everyone, reset will be adding more endpoints with time (you will have to fork the new ones with every updates) which you can get notified of from his support server. Although the API is free, you can add a credit to "resetxd#8278" in the help/about section of the bot as appreciation to his works.
+The API is open-sourced and therefore free for everyone, reset will be adding more endpoints with time (you will have to fork the new ones with every updates) which you can get notified of from his support server.
 
 # Hosting API
 
